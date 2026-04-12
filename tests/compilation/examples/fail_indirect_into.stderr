@@ -1,0 +1,45 @@
+error[E0277]: `?` couldn't convert the error to `Error1`
+  --> tests/compilation/examples/fail_indirect_into.rs:54:55
+   |
+54 |     let x = try bikeshed Result<_, Error1> { err3("1")? + err2("2")? };
+   |                                              ---------^ the trait `From<Error3>` is not implemented for `Error1`
+   |                                              |
+   |                                              this can't be annotated with `?` because it has type `Result<_, Error3>`
+   |
+note: `Error1` needs to implement `From<Error3>`
+  --> tests/compilation/examples/fail_indirect_into.rs:7:1
+   |
+ 7 | struct Error1;
+   | ^^^^^^^^^^^^^
+   = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+help: `Error1` implements trait `From<T>`
+  --> tests/compilation/examples/fail_indirect_into.rs:15:1
+   |
+15 | impl From<ParseIntError> for Error1 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `From<ParseIntError>`
+...
+33 | impl From<Error2> for Error1 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `From<Error2>`
+
+error[E0277]: `?` couldn't convert the error to `Error1`
+  --> tests/compilation/examples/fail_indirect_into.rs:55:68
+   |
+55 |     let y = try bikeshed Result<_, Error1> { err2("1")? + err3("2")? };
+   |                                                           ---------^ the trait `From<Error3>` is not implemented for `Error1`
+   |                                                           |
+   |                                                           this can't be annotated with `?` because it has type `Result<_, Error3>`
+   |
+note: `Error1` needs to implement `From<Error3>`
+  --> tests/compilation/examples/fail_indirect_into.rs:7:1
+   |
+ 7 | struct Error1;
+   | ^^^^^^^^^^^^^
+   = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+help: `Error1` implements trait `From<T>`
+  --> tests/compilation/examples/fail_indirect_into.rs:15:1
+   |
+15 | impl From<ParseIntError> for Error1 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `From<ParseIntError>`
+...
+33 | impl From<Error2> for Error1 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `From<Error2>`
