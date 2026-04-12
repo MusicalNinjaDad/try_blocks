@@ -68,15 +68,6 @@ fn heterogeneous_into_exists() {
     assert_eq!(x.unwrap(), y.unwrap());
 }
 
-// // TODO: Move to trybuild test
-// #[test]
-// fn heterogeneous_into_missing() {
-//     let x = try bikeshed Result<_, Error2> { err1("1")? + err2("2")? };
-//     let y = try bikeshed Result<_, Error2> { err2("1")? + err1("2")? };
-//     assert_eq!(x.unwrap(), y.unwrap());
-// }
-
-// TODO: Add failing example via double into (3->2->1 but not 3->1)
 #[test]
 fn heterogeneous_into_common_other() {
     let x = try bikeshed Result<_, Error1> { err2("1")? + err3("2")? };
