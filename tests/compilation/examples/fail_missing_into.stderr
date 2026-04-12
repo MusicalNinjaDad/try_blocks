@@ -1,0 +1,43 @@
+error[E0277]: `?` couldn't convert the error to `Error2`
+  --> tests/compilation/examples/fail_missing_into.rs:39:55
+   |
+39 |     let x = try bikeshed Result<_, Error2> { err1("1")? + err2("2")? };
+   |                                              ---------^ the trait `From<Error1>` is not implemented for `Error2`
+   |                                              |
+   |                                              this can't be annotated with `?` because it has type `Result<_, Error1>`
+   |
+note: `Error2` needs to implement `From<Error1>`
+  --> tests/compilation/examples/fail_missing_into.rs:10:1
+   |
+10 | struct Error2;
+   | ^^^^^^^^^^^^^
+   = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+help: the trait `From<Error1>` is not implemented for `Error2`
+      but trait `From<ParseIntError>` is implemented for it
+  --> tests/compilation/examples/fail_missing_into.rs:18:1
+   |
+18 | impl From<ParseIntError> for Error2 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   = help: for that trait implementation, expected `ParseIntError`, found `Error1`
+
+error[E0277]: `?` couldn't convert the error to `Error2`
+  --> tests/compilation/examples/fail_missing_into.rs:40:68
+   |
+40 |     let y = try bikeshed Result<_, Error2> { err2("1")? + err1("2")? };
+   |                                                           ---------^ the trait `From<Error1>` is not implemented for `Error2`
+   |                                                           |
+   |                                                           this can't be annotated with `?` because it has type `Result<_, Error1>`
+   |
+note: `Error2` needs to implement `From<Error1>`
+  --> tests/compilation/examples/fail_missing_into.rs:10:1
+   |
+10 | struct Error2;
+   | ^^^^^^^^^^^^^
+   = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+help: the trait `From<Error1>` is not implemented for `Error2`
+      but trait `From<ParseIntError>` is implemented for it
+  --> tests/compilation/examples/fail_missing_into.rs:18:1
+   |
+18 | impl From<ParseIntError> for Error2 {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   = help: for that trait implementation, expected `ParseIntError`, found `Error1`

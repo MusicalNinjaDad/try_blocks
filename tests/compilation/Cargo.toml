@@ -1,5 +1,5 @@
 [package]
-name = "try_blocks"
+name = "try_blocks_compilation_tests"
 version = "0.0.1"
 publish = false
 edition = "2024"
@@ -13,12 +13,5 @@ categories = ["rust-patterns"]
 license = "MIT"
 exclude = [".github", ".devcontainer"]
 
-[dev-dependencies]
-anyhow = "1.0.102"
-trybuild = "1.0.116"
-
-[workspace]
-members = ["tests/compilation"]
-
-[workspace.dependencies]
-try_blocks = { path = "." }
+[dependencies]
+try_blocks = { workspace = true }
