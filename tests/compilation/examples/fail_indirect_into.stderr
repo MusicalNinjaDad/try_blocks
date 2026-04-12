@@ -1,7 +1,7 @@
 error[E0277]: `?` couldn't convert the error to `Error1`
-  --> tests/compilation/examples/fail_indirect_into.rs:54:55
+  --> tests/compilation/examples/fail_indirect_into.rs:58:55
    |
-54 |     let x = try bikeshed Result<_, Error1> { err3("1")? + err2("2")? };
+58 |     let x = try bikeshed Result<_, Error1> { err3("1")? + err2("2")? };
    |                                              ---------^ the trait `From<Error3>` is not implemented for `Error1`
    |                                              |
    |                                              this can't be annotated with `?` because it has type `Result<_, Error3>`
@@ -22,9 +22,9 @@ help: `Error1` implements trait `From<T>`
    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `From<Error2>`
 
 error[E0277]: `?` couldn't convert the error to `Error1`
-  --> tests/compilation/examples/fail_indirect_into.rs:55:68
+  --> tests/compilation/examples/fail_indirect_into.rs:59:68
    |
-55 |     let y = try bikeshed Result<_, Error1> { err2("1")? + err3("2")? };
+59 |     let y = try bikeshed Result<_, Error1> { err2("1")? + err3("2")? };
    |                                                           ---------^ the trait `From<Error3>` is not implemented for `Error1`
    |                                                           |
    |                                                           this can't be annotated with `?` because it has type `Result<_, Error3>`
