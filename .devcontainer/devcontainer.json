@@ -45,7 +45,11 @@
                     // - https://github.com/DavidAnson/vscode-markdownlint/issues/180
                     // - https://github.com/DavidAnson/vscode-markdownlint/issues/302
                     // - https://github.com/DavidAnson/markdownlint/issues/209
-                    "MD046": false // {"style": "fenced"} leads to errors on codeblocks in admonitions
+                    "MD046": false, // {"style": "fenced"} leads to errors on codeblocks in admonitions
+                    // lints broken by RFC template:
+                    "MD041": false,
+                    "MD022": false,
+                    "MD053": false
                 },
                 "[markdown]": {
                     "editor.tabSize": 2,
