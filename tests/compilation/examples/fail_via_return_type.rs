@@ -41,9 +41,9 @@ fn err2(s: &str) -> Result<i32, Error2> {
 }
 
 fn heterogeneous_via_return_type() -> Result<(), Error1> {
-    let x = try { err1("1")? + err2("2")? };
+    let x = try { err1("1")? + err2("2")? }?;
     let y = try { err2("1")? + err1("2")? };
-    assert_eq!(x.unwrap(), y.unwrap());
+    assert_eq!(x, y?);
     Ok(())
 }
 
