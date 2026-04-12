@@ -1,14 +1,14 @@
 error[E0308]: mismatched types
   --> tests/compilation/examples/fail_via_return_type.rs:44:32
    |
-44 |     let x = try { err1("1")? + err2("2")? };
+44 |     let x = try { err1("1")? + err2("2")? }?;
    |                                ^^^^^^^^^^ expected `Result<_, Error1>`, found `Result<_, Error2>`
    |
    = note: expected enum `Result<_, Error1>`
               found enum `Result<_, Error2>`
 help: use the `?` operator to extract the `Result<_, Error2>` value, propagating a `Result::Err` value to the caller
    |
-44 |     let x = try { err1("1")? + err2("2")?? };
+44 |     let x = try { err1("1")? + err2("2")?? }?;
    |                                          +
 
 error[E0308]: mismatched types
