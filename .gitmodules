@@ -1,0 +1,3 @@
+[submodule "rust-rfcs"]
+	path = rust-rfcs
+	url = https://github.com/MusicalNinjaDad/rust-rfcs
