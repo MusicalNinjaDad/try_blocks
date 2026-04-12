@@ -12,6 +12,23 @@ struct Error2;
 #[derive(Debug)]
 struct Error3;
 
+use std::{error::Error, fmt::Display};
+impl Error for Error1 {}
+impl Display for Error1 {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Error1")?;
+        Ok(())
+    }
+}
+
+impl Error for Error2 {}
+impl Display for Error2 {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Error2")?;
+        Ok(())
+    }
+}
+
 impl From<ParseIntError> for Error1 {
     fn from(_: ParseIntError) -> Self {
         Self
@@ -65,6 +82,13 @@ fn homogenous() {
 fn heterogeneous_into_exists() {
     let x = try bikeshed Result<_, Error1> { err1("1")? + err2("2")? };
     let y = try bikeshed Result<_, Error1> { err2("1")? + err1("2")? };
+    assert_eq!(x.unwrap(), y.unwrap());
+}
+
+#[test]
+fn heterogeneous_into_anyhow() {
+    let x = try bikeshed anyhow::Result<_> { err1("1")? + err2("2")? };
+    let y = try bikeshed anyhow::Result<_> { err2("1")? + err1("2")? };
     assert_eq!(x.unwrap(), y.unwrap());
 }
 
