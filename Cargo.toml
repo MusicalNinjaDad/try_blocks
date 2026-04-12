@@ -12,3 +12,6 @@ repository = "https://github.com/MusicalNinjaDad/try_blocks"
 categories = ["rust-patterns"]
 license = "MIT"
 exclude = [".github", ".devcontainer"]
+
+[dev-dependencies]
+anyhow = "1.0.102"
