@@ -1,0 +1,14 @@
+[package]
+name = "try_blocks"
+version = "0.0.1"
+publish = false
+edition = "2024"
+readme = "README.md"
+description = "Working on heterogenous try blocks for RFC"
+authors = ["Mike Foster <https://github.com/MusicalNinjaDad>"]
+keywords = ["try"]
+homepage = "https://github.com/MusicalNinjaDad/try_blocks"
+repository = "https://github.com/MusicalNinjaDad/try_blocks"
+categories = ["rust-patterns"]
+license = "MIT"
+exclude = [".github", ".devcontainer"]
