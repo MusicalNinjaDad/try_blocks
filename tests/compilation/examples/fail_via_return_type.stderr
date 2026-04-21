@@ -23,3 +23,16 @@ help: use the `?` operator to extract the `Result<_, Error1>` value, propagating
    |
 45 |     let y = try { err2("1")? + err1("2")?? };
    |                                          +
+
+error[E0308]: mismatched types
+  --> tests/compilation/examples/fail_via_return_type.rs:46:51
+   |
+46 |     let _: Result<_, Error2> = try { err2("1")? + err1("2")? };
+   |                                                   ^^^^^^^^^^ expected `Result<_, Error2>`, found `Result<_, Error1>`
+   |
+   = note: expected enum `Result<_, Error2>`
+              found enum `Result<_, Error1>`
+help: use the `?` operator to extract the `Result<_, Error1>` value, propagating a `Result::Err` value to the caller
+   |
+46 |     let _: Result<_, Error2> = try { err2("1")? + err1("2")?? };
+   |                                                             +
