@@ -1,4 +1,4 @@
-FROM ghcr.io/musicalninjas/pyo3-devcontainer:latest@sha256:d781fbc568e1d037c49f5a5608e23a6c4c01fa42ee363aaa7c15872e5a0817be
+FROM ghcr.io/musicalninjas/pyo3-devcontainer:latest@sha256:9c92447bc3c34bc912a533741254373c9939db8e086be1383f45f47a7884be76
 
 RUN rustup default nightly \
     && rustup component add rust-docs 
